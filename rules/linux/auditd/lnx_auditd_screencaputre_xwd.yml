@@ -4,11 +4,10 @@ status: test
 description: Detects adversary creating screen capture of a full with xwd. Highly recommended using rule on servers, due high usage of screenshot utilities on user workstations
 references:
     - https://github.com/redcanaryco/atomic-red-team/blob/f339e7da7d05f6057fdfcdd3742bfcf365fee2a9/atomics/T1113/T1113.md#atomic-test-3---x-windows-capture
-    - https://attack.mitre.org/techniques/T1113/
     - https://linux.die.net/man/1/xwd
 author: 'Pawel Mazur'
-date: 2021/09/13
-modified: 2022/10/09
+date: 2021-09-13
+modified: 2022-12-18
 tags:
     - attack.collection
     - attack.t1113
@@ -16,7 +15,7 @@ logsource:
     product: linux
     service: auditd
 detection:
-    xwd:
+    selection:
         type: EXECVE
         a0: xwd
     xwd_root_window:
@@ -26,7 +25,7 @@ detection:
     xwd_no_root_window:
         a1: '-out'
         a2|endswith: '.xwd'
-    condition: xwd and (xwd_root_window or xwd_no_root_window)
+    condition: selection and 1 of xwd_*
 falsepositives:
     - Legitimate use of screenshot utility
 level: low

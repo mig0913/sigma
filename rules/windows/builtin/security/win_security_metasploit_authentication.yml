@@ -5,10 +5,10 @@ description: Alerts on Metasploit host's authentications on the domain.
 references:
     - https://github.com/rapid7/metasploit-framework/blob/1416b5776d963f21b7b5b45d19f3e961201e0aed/lib/rex/proto/smb/client.rb
 author: Chakib Gzenayi (@Chak092), Hosni Mribah
-date: 2020/05/06
-modified: 2022/10/09
+date: 2020-05-06
+modified: 2024-01-25
 tags:
-    - attack.lateral_movement
+    - attack.lateral-movement
     - attack.t1021.002
 logsource:
     product: windows
@@ -22,7 +22,6 @@ detection:
         AuthenticationPackageName: 'NTLM'
         WorkstationName|re: '^[A-Za-z0-9]{16}$'
     selection2:
-        ProcessName:
         EventID: 4776
         Workstation|re: '^[A-Za-z0-9]{16}$'
     condition: 1 of selection*

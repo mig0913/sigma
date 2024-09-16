@@ -1,25 +1,24 @@
-title: New Network Provider - Registry
+title: Potential Credential Dumping Attempt Using New NetworkProvider - REG
 id: 0442defa-b4a2-41c9-ae2c-ea7042fc4701
 related:
     - id: baef1ec6-2ca9-47a3-97cc-4cf2bda10b77
       type: similar
-status: experimental
+status: test
 description: Detects when an attacker tries to add a new network provider in order to dump clear text credentials, similar to how the NPPSpy tool does it
 references:
-    - https://docs.microsoft.com/en-us/troubleshoot/windows-client/deployment/network-provider-settings-removed-in-place-upgrade
+    - https://learn.microsoft.com/en-us/troubleshoot/windows-client/setup-upgrade-and-drivers/network-provider-settings-removed-in-place-upgrade
     - https://github.com/gtworek/PSBits/tree/master/PasswordStealing/NPPSpy
-author: Nasreddine Bencherchali
-date: 2022/08/23
-modified: 2022/09/18
+author: Nasreddine Bencherchali (Nextron Systems)
+date: 2022-08-23
+modified: 2023-08-17
 tags:
-    - attack.credential_access
+    - attack.credential-access
     - attack.t1003
 logsource:
     category: registry_set
     product: windows
 detection:
     selection:
-        EventType: SetValue
         TargetObject|contains|all:
             - '\System\CurrentControlSet\Services\'
             - '\NetworkProvider'
@@ -28,10 +27,10 @@ detection:
             - '\System\CurrentControlSet\Services\WebClient\NetworkProvider'
             - '\System\CurrentControlSet\Services\LanmanWorkstation\NetworkProvider'
             - '\System\CurrentControlSet\Services\RDPNP\NetworkProvider'
-            #- '\System\CurrentControlSet\Services\P9NP\NetworkProvider' # Related to WSL remove the comment if you use WSL in your ENV
+            # - '\System\CurrentControlSet\Services\P9NP\NetworkProvider' # Related to WSL remove the comment if you use WSL in your ENV
     filter_valid_procs:
         Image: C:\Windows\System32\poqexec.exe
     condition: selection and not 1 of filter*
 falsepositives:
     - Other legitimate network providers used and not filtred in this rule
-level: high
+level: medium

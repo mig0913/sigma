@@ -4,11 +4,11 @@ status: test
 description: Detects a suspicious child process of userinit
 references:
     - https://twitter.com/SBousseaden/status/1139811587760562176
-author: Florian Roth (rule), Samir Bousseaden (idea)
-date: 2019/06/17
-modified: 2022/10/09
+author: Florian Roth (Nextron Systems), Samir Bousseaden (idea)
+date: 2019-06-17
+modified: 2022-12-09
 tags:
-    - attack.defense_evasion
+    - attack.defense-evasion
     - attack.t1055
 logsource:
     category: process_creation
@@ -20,7 +20,7 @@ detection:
         CommandLine|contains: '\netlogon\'
     filter2:
         - Image|endswith: '\explorer.exe'
-        - ImageFileName: 'explorer.exe'
+        - OriginalFileName: 'explorer.exe'
     condition: selection and not 1 of filter*
 fields:
     - CommandLine

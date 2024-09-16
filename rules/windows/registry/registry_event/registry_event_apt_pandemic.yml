@@ -5,11 +5,11 @@ description: Detects Pandemic Windows Implant
 references:
     - https://wikileaks.org/vault7/#Pandemic
     - https://twitter.com/MalwareJake/status/870349480356454401
-author: Florian Roth
-date: 2017/06/01
-modified: 2022/10/09
+author: Florian Roth (Nextron Systems)
+date: 2017-06-01
+modified: 2022-10-09
 tags:
-    - attack.lateral_movement
+    - attack.command-and-control
     - attack.t1105
 logsource:
     category: registry_event
@@ -18,13 +18,6 @@ detection:
     selection:
         TargetObject|contains: '\SYSTEM\CurrentControlSet\services\null\Instance'
     condition: selection
-fields:
-    - EventID
-    - CommandLine
-    - ParentCommandLine
-    - Image
-    - User
-    - TargetObject
 falsepositives:
     - Unknown
 level: critical

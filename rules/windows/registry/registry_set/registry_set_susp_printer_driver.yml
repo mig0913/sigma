@@ -4,19 +4,18 @@ status: test
 description: Detects a suspicious printer driver installation with an empty Manufacturer value
 references:
     - https://twitter.com/SBousseaden/status/1410545674773467140
-author: Florian Roth
-date: 2020/07/01
-modified: 2022/09/21
+author: Florian Roth (Nextron Systems)
+date: 2020-07-01
+modified: 2023-08-17
 tags:
-    - attack.privilege_escalation
+    - attack.privilege-escalation
     - attack.t1574
-    - cve.2021.1675
+    - cve.2021-1675
 logsource:
     category: registry_set
     product: windows
 detection:
     selection:
-        EventType: SetValue
         TargetObject|contains|all:
             - '\Control\Print\Environments\Windows x64\Drivers'
             - '\Manufacturer'
@@ -27,6 +26,8 @@ detection:
         TargetObject|contains:
             - '\VNC Printer (PS)\'
             - '\VNC Printer (UD)\'
+    filter_pdf24:
+        TargetObject|contains: '\Version-3\PDF24\'
     condition: selection and not 1 of filter_*
 falsepositives:
     - Alerts on legitimate printer drivers that do not set any more details in the Manufacturer value

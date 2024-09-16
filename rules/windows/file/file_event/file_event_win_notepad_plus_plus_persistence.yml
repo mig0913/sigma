@@ -1,12 +1,12 @@
-title: Persistence Via Notepad++ Plugins
+title: Potential Persistence Via Notepad++ Plugins
 id: 54127bd4-f541-4ac3-afdb-ea073f63f692
-status: experimental
+status: test
 description: Detects creation of new ".dll" files inside the plugins directory of a notepad++ installation by a process other than "gup.exe". Which could indicates possible persistence
 references:
     - https://pentestlab.blog/2022/02/14/persistence-notepad-plugins/
-author: Nasreddine Bencherchali
-date: 2022/06/10
-modified: 2022/09/20
+author: Nasreddine Bencherchali (Nextron Systems)
+date: 2022-06-10
+modified: 2023-01-05
 tags:
     - attack.persistence
 logsource:
@@ -25,8 +25,8 @@ detection:
         Image|endswith:
             - '\target.exe'
             - 'Installer.x64.exe'
-    condition: selection and not 1 of filter*
+    condition: selection and not 1 of filter_*
 falsepositives:
     - Possible FPs during first installation of Notepad++
-    - Legitimate use of custom plugins to enhance notepad++ functionality by users
+    - Legitimate use of custom plugins by users in order to enhance notepad++ functionalities
 level: medium

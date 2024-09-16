@@ -1,4 +1,4 @@
-title: Linux Network Service Scanning
+title: Linux Network Service Scanning - Auditd
 id: 3761e026-f259-44e6-8826-719ed8079408
 related:
     - id: 3e102cd9-a70d-4a7a-9508-403963092f31
@@ -8,8 +8,8 @@ description: Detects enumeration of local or remote network services.
 references:
     - https://github.com/redcanaryco/atomic-red-team/blob/f339e7da7d05f6057fdfcdd3742bfcf365fee2a9/atomics/T1046/T1046.md
 author: Alejandro Ortuno, oscd.community
-date: 2020/10/21
-modified: 2022/10/09
+date: 2020-10-21
+modified: 2023-09-26
 tags:
     - attack.discovery
     - attack.t1046
@@ -25,6 +25,8 @@ detection:
             - '/nmap'
             - '/netcat'
             - '/nc'
+            - '/ncat'
+            - '/nc.openbsd'
         key: 'network_connect_4'
     condition: selection
 falsepositives:

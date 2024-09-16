@@ -4,9 +4,9 @@ status: test
 description: Detects suspicious shell commands or program code that may be executed or used in command line to establish a reverse shell
 references:
     - https://alamot.github.io/reverse_shells/
-author: Florian Roth
-date: 2019/04/02
-modified: 2021/11/27
+author: Florian Roth (Nextron Systems)
+date: 2019-04-02
+modified: 2021-11-27
 tags:
     - attack.execution
     - attack.t1059.004

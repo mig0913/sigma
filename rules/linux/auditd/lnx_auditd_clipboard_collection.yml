@@ -1,4 +1,4 @@
-title: Clipboard Collection with Xclip Tool
+title: Clipboard Collection with Xclip Tool - Auditd
 id: 214e7e6c-f21b-47ff-bb6f-551b2d143fcf
 status: test
 description: |
@@ -6,12 +6,11 @@ description: |
   Xclip has to be installed.
   Highly recommended using rule on servers, due to high usage of clipboard utilities on user workstations.
 references:
-    - https://attack.mitre.org/techniques/T1115/
     - https://linux.die.net/man/1/xclip
     - https://www.cyberciti.biz/faq/xclip-linux-insert-files-command-output-intoclipboard/
 author: 'Pawel Mazur'
-date: 2021/09/24
-modified: 2022/10/09
+date: 2021-09-24
+modified: 2022-11-26
 tags:
     - attack.collection
     - attack.t1115
